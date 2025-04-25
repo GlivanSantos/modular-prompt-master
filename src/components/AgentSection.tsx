@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { usePromptBuilder } from '@/contexts/PromptBuilderContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,9 +19,23 @@ const languageOptions = [
 const communicationStyleOptions = [
   { label: 'Formal', value: 'formal' },
   { label: 'Informal', value: 'informal' },
-  { label: 'Técnico', value: 'technical' },
-  { label: 'Amigável', value: 'friendly' },
-  { label: 'Profissional', value: 'professional' },
+  { label: 'Alegre', value: 'alegre' },
+  { label: 'Empático', value: 'empatico' },
+  { label: 'Direto', value: 'direto' },
+  { label: 'Motivacional', value: 'motivacional' },
+  { label: 'Amigável', value: 'amigavel' },
+  { label: 'Profissional', value: 'profissional' },
+  { label: 'Humorístico', value: 'humoristico' },
+  { label: 'Educativo', value: 'educativo' },
+  { label: 'Conservador', value: 'conservador' },
+  { label: 'Criativo', value: 'criativo' },
+  { label: 'Conciso', value: 'conciso' },
+  { label: 'Inspirador', value: 'inspirador' },
+  { label: 'Enciclopédico', value: 'enciclopedico' },
+  { label: 'Descontraído', value: 'descontraido' },
+  { label: 'Persuasivo', value: 'persuasivo' },
+  { label: 'Neutral', value: 'neutral' },
+  { label: 'Assertivo', value: 'assertivo' }
 ];
 
 const AgentSection: React.FC = () => {

@@ -193,81 +193,72 @@ export const PromptBuilderProvider = ({ children }: { children: ReactNode }) => 
   const generatePrompt = () => {
     const { agent, fieldConfigs, validations, rules, functions } = promptData;
     
-    let prompt = `# ${agent.name || 'Agent'} Configuration\n\n`;
+    let prompt = '<Agent>\n';
+    prompt += `  <Name>${agent.name || ''}</Name>\n`;
+    prompt += `  <Description>${agent.description || ''}</Description>\n`;
+    prompt += `  <Language>${agent.language || ''}</Language>\n`;
+    prompt += '  <CommunicationStyle>\n';
+    prompt += `    <style>${agent.communicationStyle || ''}</style>\n`;
+    prompt += '    <Guide>\n      [\n';
     
-    // Agent Section
-    prompt += "## Agent Details\n";
-    prompt += `- **Name:** ${agent.name || 'Unnamed Agent'}\n`;
-    prompt += `- **Description:** ${agent.description || 'No description provided'}\n`;
-    prompt += `- **Language:** ${agent.language || 'Not specified'}\n`;
-    prompt += `- **Communication Style:** ${agent.communicationStyle || 'Not specified'}\n\n`;
-    
-    // Guide Rules
     if (agent.guideRules && agent.guideRules.length > 0) {
-      prompt += "## Guide Rules\n";
-      agent.guideRules.forEach((rule, index) => {
+      agent.guideRules.forEach((rule) => {
         if (rule) {
-          prompt += `${index + 1}. ${rule}\n`;
+          prompt += `        "${rule}",\n`;
         }
       });
-      prompt += "\n";
     }
     
-    // Field Configuration
+    prompt += '      ]\n    </Guide>\n';
+    prompt += '  </CommunicationStyle>\n';
+    
+    // Fields Configurator
+    prompt += '  <FieldsConfigurator>\n    [\n';
     const activeFieldConfigs = fieldConfigs.filter(fc => fc.checked);
-    if (activeFieldConfigs.length > 0) {
-      prompt += "## Field Configuration\n";
-      activeFieldConfigs.forEach((config, index) => {
-        prompt += `${index + 1}. ${config.description}\n`;
-      });
-      prompt += "\n";
-    }
+    activeFieldConfigs.forEach((config) => {
+      prompt += `      "${config.description}",\n`;
+    });
+    prompt += '    ]\n  </FieldsConfigurator>\n';
     
     // Validations
-    if (validations.length > 0) {
-      prompt += "## Validations\n";
-      validations.forEach((validation, index) => {
-        prompt += `${index + 1}. ${validation.description}\n`;
-      });
-      prompt += "\n";
-    }
+    prompt += '  <Validations>\n';
+    validations.forEach((validation) => {
+      prompt += `    <Validation>${validation.description}</Validation>\n`;
+    });
+    prompt += '  </Validations>\n';
     
     // Rules
-    if (rules.length > 0) {
-      prompt += "## Behavior Rules\n";
-      rules.forEach((rule, index) => {
-        prompt += `${index + 1}. ${rule.description}\n`;
-      });
-      prompt += "\n";
-    }
+    prompt += '  <Rules>\n';
+    rules.forEach((rule) => {
+      prompt += `    <Rule>${rule.description}</Rule>\n`;
+    });
+    prompt += '  </Rules>\n';
     
     // Functions
-    if (functions.length > 0) {
-      prompt += "## Functions\n\n";
-      functions.forEach((fn, fnIndex) => {
-        prompt += `### Function: ${fn.name || `Function ${fnIndex + 1}`}\n\n`;
-        
-        if (fn.responseTemplate) {
-          prompt += "#### Response Template:\n```\n";
-          prompt += fn.responseTemplate;
-          prompt += "\n```\n\n";
+    prompt += '  <Functions>\n';
+    functions.forEach((fn) => {
+      prompt += '    <Function>\n';
+      prompt += `      <Name>${fn.name || ''}</Name>\n`;
+      prompt += `      <ResponseTemplate>${fn.responseTemplate || ''}</ResponseTemplate>\n`;
+      prompt += '      <Fields>\n';
+      
+      fn.fields.forEach((field) => {
+        prompt += '        <Field>\n';
+        prompt += `          <Name>${field.name || ''}</Name>\n`;
+        prompt += `          <Prompt>${field.prompt || ''}</Prompt>\n`;
+        prompt += '          <Validations>\n            [\n';
+        if (field.validation) {
+          prompt += `              "${field.validation}",\n`;
         }
-        
-        if (fn.fields.length > 0) {
-          prompt += "#### Fields:\n\n";
-          fn.fields.forEach((field, fieldIndex) => {
-            prompt += `##### Field ${fieldIndex + 1}: ${field.name || 'Unnamed Field'}\n`;
-            prompt += `- **Prompt:** ${field.prompt || 'No prompt provided'}\n`;
-            if (field.validation) {
-              prompt += `- **Validation:** ${field.validation}\n`;
-            }
-            prompt += "\n";
-          });
-        }
-        
-        prompt += "\n";
+        prompt += '            ]\n          </Validations>\n';
+        prompt += '        </Field>\n';
       });
-    }
+      
+      prompt += '      </Fields>\n';
+      prompt += '    </Function>\n';
+    });
+    prompt += '  </Functions>\n';
+    prompt += '</Agent>';
     
     return prompt;
   };

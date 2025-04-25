@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { usePromptBuilder } from '@/contexts/PromptBuilderContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,13 +9,16 @@ import { Textarea } from '@/components/ui/textarea';
 import { Plus, X } from 'lucide-react';
 
 const validationOptions = [
-  'Validar formato de email',
-  'Verificar CPF/CNPJ',
-  'Validar data',
-  'Verificar telefone',
-  'Validar CEP',
-  'Verificar preenchimento obrigatório',
-  'Limitar quantidade de caracteres'
+  'Todas as validações devem pegar o histórico de mensagens para validar, e não apenas a última mensagem.',
+  'Se a mensagem contiver palavras inadequadas, a resposta deve ser educada e solicitar reformulação.',
+  'Verifique se o usuário forneceu todas as informações necessárias antes de prosseguir.',
+  'Valide se os dados financeiros fornecidos pelo usuário são consistentes.',
+  'Certifique-se de que a informação fornecida está dentro das diretrizes de conformidade.',
+  'Garanta que as respostas não contenham informações sensíveis a menos que explicitamente autorizado.',
+  'Valide se os dados pessoais são consistentes com os registros existentes.',
+  'Verifique se a mensagem respeita as regras de privacidade estabelecidas.',
+  'Certifique-se de que todas as respostas técnicas estejam corretas e dentro do escopo solicitado.',
+  'Valide se as consultas encaminhadas estão dentro do horário de atendimento.'
 ];
 
 const ValidationsSection: React.FC = () => {

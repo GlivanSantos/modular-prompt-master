@@ -9,13 +9,24 @@ import { Label } from '@/components/ui/label';
 import { X } from 'lucide-react';
 
 const ruleOptions = [
-  'Nunca mencione que você é uma IA',
-  'Sempre cite fontes ao fornecer informações',
-  'Evite linguagem técnica desnecessária',
-  'Nunca peça informações pessoais sensíveis',
-  'Recuse solicitações inadequadas de forma educada',
-  'Sempre verifique se a resposta atende à necessidade do usuário',
-  'Informe quando não souber a resposta'
+  'O agente deve sempre basear suas respostas em dados disponíveis e evitar adivinhar ou fazer suposições sem fundamento.',
+  'Se o agente não tiver certeza sobre uma informação, ele deve responder de forma transparente, indicando que não possui os dados no momento.',
+  'O agente não deve fornecer informações que não sejam suportadas por dados específicos ou por fontes confiáveis disponíveis.',
+  'Responda de forma educada, solicitando reformular a pergunta, caso a mensagem contenha conteúdo ofensivo.',
+  'Use o limite de apenas 100 palavras na sua resposta, respostas curtas são ideais para comunicação ágil.',
+  'Sempre verifique a ortografia e a gramática antes de enviar respostas.',
+  'Mantenha uma postura neutra e imparcial ao lidar com questões delicadas.',
+  'Evite o uso de jargões técnicos que possam confundir o cliente.',
+  'Proporcione alternativas quando não puder atender a uma solicitação específica.',
+  'Nunca peça informações pessoais sensíveis através de canais inseguros.',
+  'Todas as respostas devem ser personalizadas para o cliente específico.',
+  'Seja claro e conciso, evitando respostas longas e desnecessárias.',
+  'Confirme as informações com fontes confiáveis antes de transmiti-las ao cliente.',
+  'Manter a confidencialidade do cliente em todas as interações.',
+  'Evite prometer algo que não pode ser entregue.',
+  'Responda às perguntas o mais breve possível para manter a satisfação do cliente.',
+  'Use uma linguagem amigável e acessível.',
+  'Sempre pergunte se há algo mais em que pode ajudar antes de encerrar a conversa.'
 ];
 
 const RulesSection: React.FC = () => {
