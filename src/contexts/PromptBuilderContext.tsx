@@ -1,6 +1,5 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { Agent, FieldConfig, Validation, Rule, Function, PromptData } from '@/types/promptBuilder';
+import { Agent, FieldConfig, Validation, Rule, Function, PromptData, Field } from '@/types/promptBuilder';
 import { v4 as uuidv4 } from 'uuid';
 
 interface PromptBuilderContextType {
