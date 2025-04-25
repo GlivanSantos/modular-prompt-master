@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Custom colors for the Prompt Builder
+				promptbuilder: {
+					green: '#10B981',
+					gray: '#E5E7EB',
+					darkgray: '#6B7280',
+					lightgray: '#F9FAFB'
 				}
 			},
 			borderRadius: {
